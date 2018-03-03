@@ -3,4 +3,5 @@
     <string name="note_list_title">全部笔记</string>
     <string name="edit_note_title">新建笔记</string>
     <string name="read_note_title">阅读笔记</string>
+    <string name="msg_note_saved">笔记已保存</string>
 </resources>

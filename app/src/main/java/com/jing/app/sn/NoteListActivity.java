@@ -1,8 +1,8 @@
 package com.jing.app.sn;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class NoteListActivity extends AppCompatActivity {
@@ -20,7 +20,7 @@ public class NoteListActivity extends AppCompatActivity {
     }
 
     public void onReadNote(View view) {
-        // 启动新建页面
+        // 启动阅读页面
         Intent intent = new Intent(this, ReadNoteActivity.class);
         startActivity(intent);
     }
