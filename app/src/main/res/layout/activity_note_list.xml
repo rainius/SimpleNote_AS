@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.jing.app.sn.NoteListActivity">
 
-    <Button
-        android:id="@+id/btn_new_note"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/note_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add_note"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
         android:onClick="onNewNote"
-        android:text="新建"/>
+        app:srcCompat="@drawable/ic_add" />
 
-    <Button
-        android:id="@+id/btn_read_note"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onReadNote"
-        android:text="阅读"/>
 
-</LinearLayout>
+</FrameLayout>
