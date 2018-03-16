@@ -1,9 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.jing.app.sn.ReadNoteActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- 显示笔记创建时间 -->
+            <TextView
+                android:id="@+id/tv_read_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/read_padding_horizontal"
+                android:paddingRight="@dimen/read_padding_horizontal"
+                android:paddingTop="@dimen/read_padding_vertical"
+                android:textSize="@dimen/read_time_font_size"
+                android:textColor="@color/dark_grey"
+                android:text="2018/03/13"/>
+
+            <!-- 显示笔记标题 -->
+            <TextView
+                android:id="@+id/tv_read_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/read_padding_horizontal"
+                android:paddingRight="@dimen/read_padding_horizontal"
+                android:paddingTop="@dimen/read_padding_vertical"
+                android:paddingBottom="@dimen/read_padding_vertical"
+                android:textSize="@dimen/read_title_font_size"
+                android:textColor="@color/black"
+                android:text="标题"/>
+
+            <!-- 显示笔记正文 -->
+            <TextView
+                android:id="@+id/tv_read_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/read_padding_horizontal"
+                android:paddingRight="@dimen/read_padding_horizontal"
+                android:paddingTop="@dimen/read_padding_vertical"
+                android:paddingBottom="@dimen/read_padding_vertical"
+                android:textSize="@dimen/edit_content_font_size"
+                android:textColor="@color/black"
+                android:text="正文"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+</FrameLayout>

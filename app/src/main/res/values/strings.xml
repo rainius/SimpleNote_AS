@@ -4,4 +4,11 @@
     <string name="edit_note_title">新建笔记</string>
     <string name="read_note_title">阅读笔记</string>
     <string name="msg_note_saved">笔记已保存</string>
+    <string name="finish">完成</string>
+
+    <string name="grid_view">网格视图</string>
+    <string name="list_view">列表视图</string>
+    <string name="hint_edit_name">请在此输入标题</string>
+    <string name="hint_edit_content">请在此记录你的想法</string>
+
 </resources>

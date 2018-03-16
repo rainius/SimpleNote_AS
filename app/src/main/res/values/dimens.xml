@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="edit_title_font_size">18sp</dimen>
+    <dimen name="edit_content_font_size">16sp</dimen>
+    <dimen name="edit_divider_height">1px</dimen>
+    <dimen name="edit_padding_horizontal">22dp</dimen>
+    <dimen name="edit_padding_vertical">16dp</dimen>
+    <dimen name="read_time_font_size">16sp</dimen>
+    <dimen name="read_padding_horizontal">16dp</dimen>
+    <dimen name="read_padding_vertical">8dp</dimen>
+    <dimen name="read_title_font_size">22sp</dimen>
+</resources>
