@@ -14,9 +14,9 @@ public interface INoteRepository {
     /**
      * 保存笔记对象
      * @param note 被保存的笔记对象
-     * @return 保存成功则返回true，失败返回false
+     * @return 保存成功则返回被保存的Note对象，并带有id，失败返回null
      */
-    boolean saveNote(Note note);
+    Note saveNote(Note note);
 
     /**
      * 从存储中获取指定的笔记对象

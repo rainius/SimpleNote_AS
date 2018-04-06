@@ -45,11 +45,11 @@ public class TestNoteRepository implements INoteRepository {
     }
 
     @Override
-    public boolean saveNote(Note note) {
+    public Note saveNote(Note note) {
         if (note != null) {
             notes.add(0, note);
         }
-        return true;
+        return note;
     }
 
     @Override
