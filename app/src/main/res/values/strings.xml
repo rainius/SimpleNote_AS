@@ -10,5 +10,6 @@
     <string name="list_view">列表视图</string>
     <string name="hint_edit_name">请在此输入标题</string>
     <string name="hint_edit_content">请在此记录你的想法</string>
+    <string name="msg_note_not_saved">笔记保存失败，请检查存储空间。</string>
 
 </resources>

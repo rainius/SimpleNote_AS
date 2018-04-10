@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.jing.app.sn.model.Note;
 import com.jing.app.sn.repository.INoteRepository;
+import com.jing.app.sn.repository.NoteRepository;
+import com.jing.app.sn.repository.NoteRepositoryFactory;
 import com.jing.app.sn.repository.TestNoteRepository;
 
 public class EditNoteActivity extends AppCompatActivity {
@@ -21,12 +23,14 @@ public class EditNoteActivity extends AppCompatActivity {
     private EditText mTitleEdit;
     private EditText mContentEdit;
 
-    INoteRepository noteRepository = TestNoteRepository.getInstance();
+    INoteRepository noteRepository;// = TestNoteRepository.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_note);
+
+        noteRepository = NoteRepositoryFactory.getNoteRepository(getApplicationContext());
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -70,22 +74,20 @@ public class EditNoteActivity extends AppCompatActivity {
 //    }
 
     private void onFinishEdit() {
-
-        // 1. 生成id
-        long id = noteRepository.getAllNotes().size() + 1;
-
-        // 2. 从编辑区获取标题和内容字符串
+        // 1. 从编辑区获取标题和内容字符串
         String title = mTitleEdit.getEditableText().toString();
         String content = mContentEdit.getEditableText().toString();
 
-        // 3. 创建笔记对象
-        Note note = new Note(id, title, content, System.currentTimeMillis());
+        // 2. 创建笔记对象
+        Note note = new Note(0, title, content, System.currentTimeMillis());
 
-        // 4. 存储笔记
-        noteRepository.saveNote(note);
-
-        Toast.makeText(this, R.string.msg_note_saved, Toast.LENGTH_SHORT).show();
-        finish();   // 关闭窗口
+        // 3. 存储笔记
+        if (noteRepository.saveNote(note) != null) {
+            Toast.makeText(this, R.string.msg_note_saved, Toast.LENGTH_SHORT).show();
+            finish();   // 关闭窗口
+        } else {
+            Toast.makeText(this, R.string.msg_note_not_saved, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void onCancelEdit() {

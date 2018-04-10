@@ -11,9 +11,19 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+
+        debug {
+            buildConfigField "String",    "USE_TEST_REPO",  '"database"'
+        }
+
         release {
+            buildConfigField "String",    "USE_TEST_REPO",  '"database"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        repoTest {
+            buildConfigField "String",    "USE_TEST_REPO",  '"test"'
         }
     }
 }

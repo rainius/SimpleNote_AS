@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.jing.app.sn.model.Note;
 import com.jing.app.sn.repository.INoteRepository;
+import com.jing.app.sn.repository.NoteRepositoryFactory;
 import com.jing.app.sn.repository.TestNoteRepository;
 import com.jing.app.sn.utils.Utils;
 
@@ -39,6 +40,8 @@ public class NoteListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_list);
+
+        noteRepository = NoteRepositoryFactory.getNoteRepository(getApplicationContext());
 
         mRecyclerView = findViewById(R.id.note_list);
         // 设定为垂直列表
