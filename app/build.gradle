@@ -13,17 +13,17 @@ android {
     buildTypes {
 
         debug {
-            buildConfigField "String",    "USE_TEST_REPO",  '"database"'
+            buildConfigField "String", "USE_TEST_REPO", '"database"'
         }
 
         release {
-            buildConfigField "String",    "USE_TEST_REPO",  '"database"'
+            buildConfigField "String", "USE_TEST_REPO", '"database"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         repoTest {
-            buildConfigField "String",    "USE_TEST_REPO",  '"test"'
+            buildConfigField "String", "USE_TEST_REPO", '"test"'
         }
     }
 }

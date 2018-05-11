@@ -1,6 +1,8 @@
 package com.jing.app.sn;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -10,9 +12,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jing.app.sn.model.Note;
+import com.jing.app.sn.model.Notebook;
 import com.jing.app.sn.repository.INoteRepository;
 import com.jing.app.sn.repository.NoteRepository;
 import com.jing.app.sn.repository.NoteRepositoryFactory;
@@ -22,6 +26,11 @@ public class EditNoteActivity extends AppCompatActivity {
 
     private EditText mTitleEdit;
     private EditText mContentEdit;
+
+    // 新笔记所属的笔记本，缺省为全部笔记
+    private Notebook mNotebook;
+    // 笔记本名字视图
+    private TextView mNotebookView;
 
     INoteRepository noteRepository;// = TestNoteRepository.getInstance();
 
@@ -37,6 +46,10 @@ public class EditNoteActivity extends AppCompatActivity {
 
         mTitleEdit = (EditText) findViewById(R.id.edit_title);
         mContentEdit = (EditText) findViewById(R.id.edit_content);
+
+        mNotebook = new Notebook(0, getString(R.string.all_notes));
+        mNotebookView = findViewById(R.id.tv_notebook);
+        mNotebookView.setText(mNotebook.getName());
     }
 
     @Override
@@ -56,7 +69,7 @@ public class EditNoteActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu_edit_note1, menu);
+        menuInflater.inflate(R.menu.menu_edit_note, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -74,20 +87,37 @@ public class EditNoteActivity extends AppCompatActivity {
 //    }
 
     private void onFinishEdit() {
-        // 1. 从编辑区获取标题和内容字符串
-        String title = mTitleEdit.getEditableText().toString();
-        String content = mContentEdit.getEditableText().toString();
+        AsyncTask<Void, Void, Note> task = new AsyncTask<Void, Void, Note>() {
 
-        // 2. 创建笔记对象
-        Note note = new Note(0, title, content, System.currentTimeMillis());
+            @Override
+            protected void onPreExecute() {
+                Toast.makeText(EditNoteActivity.this, R.string.saving_note, Toast.LENGTH_SHORT).show();
+            }
 
-        // 3. 存储笔记
-        if (noteRepository.saveNote(note) != null) {
-            Toast.makeText(this, R.string.msg_note_saved, Toast.LENGTH_SHORT).show();
-            finish();   // 关闭窗口
-        } else {
-            Toast.makeText(this, R.string.msg_note_not_saved, Toast.LENGTH_SHORT).show();
-        }
+            @Override
+            protected void onPostExecute(Note note) {
+                if (note != null) {
+                    Toast.makeText(EditNoteActivity.this, R.string.msg_note_saved, Toast.LENGTH_SHORT).show();
+                    finish();   // 关闭窗口
+                } else {
+                    Toast.makeText(EditNoteActivity.this, R.string.msg_note_not_saved, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            protected Note doInBackground(Void... voids) {
+                // 1. 从编辑区获取标题和内容字符串
+                String title = mTitleEdit.getEditableText().toString();
+                String content = mContentEdit.getEditableText().toString();
+
+                // 2. 创建笔记对象
+                Note note = new Note(0, title, content, System.currentTimeMillis(), mNotebook.getId());
+
+                return noteRepository.saveNote(note);
+            }
+        };
+
+        task.execute();
     }
 
     private void onCancelEdit() {
@@ -113,5 +143,26 @@ public class EditNoteActivity extends AppCompatActivity {
             }
         });
         builder.show(); // 显示对话框
+    }
+
+    public void onSelectNotebook(View view) {
+        // 调起笔记本列表页面选择笔记本
+        Intent intent = new Intent(this, NotebooksActivity.class);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1 && resultCode == 1) {
+            // 重新设置notebookId成员
+            long notebookId = data.getLongExtra("notebookId", 0);
+            String notebookName = data.getStringExtra("notebookName");
+
+            // 重设当前笔记本
+            mNotebook.setId(notebookId);
+            mNotebook.setName(notebookName);
+            // 刷新当前笔记本名字
+            mNotebookView.setText(mNotebook.getName());
+        }
     }
 }

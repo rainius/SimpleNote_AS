@@ -18,12 +18,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".EditNoteActivity"
+        <activity
+            android:name=".EditNoteActivity"
             android:label="@string/edit_note_title" />
-
-        <activity android:name=".ReadNoteActivity"
+        <activity
+            android:name=".ReadNoteActivity"
             android:label="@string/read_note_title" />
+
+        <activity
+            android:name=".NotebooksActivity"
+            android:label="@string/notebook"/>
     </application>
 
 </manifest>

@@ -13,10 +13,16 @@ public class Constants {
 
     // note表名字
     public static final String TABLE_NOTE = "note";
+    public static final String TABLE_NOTEBOOK = "notebook";
+
+    public static final String COL_ID = "_id";
 
     // note表各列名字
-    public static final String COL_ID = "_id";
     public static final String COL_TITLE = "title";
     public static final String COL_CONTENT = "content";
     public static final String COL_CREATE_TIME = "createTime";
+    public static final String COL_NOTEBOOK_ID = "notebookId";
+
+    // notebook表各列名字
+    public static final String COL_NOTEBOOK_NAME= "name";
 }

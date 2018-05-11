@@ -22,12 +22,24 @@ public class Note {
      * 笔记创建时间
      */
     private long createTime;
+    /**
+     * 所属的笔记本的id
+     */
+    private long notebookId;
 
     public Note(long id, String title, String content, long createTime) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.createTime = createTime;
+    }
+
+    public Note(long id, String title, String content, long createTime, long notebookId) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.createTime = createTime;
+        this.notebookId = notebookId;
     }
 
     public long getId() {
@@ -60,5 +72,13 @@ public class Note {
 
     public void setCreateTime(long createTime) {
         this.createTime = createTime;
+    }
+
+    public long getNotebookId() {
+        return notebookId;
+    }
+
+    public void setNotebookId(long noteId) {
+        this.notebookId = noteId;
     }
 }

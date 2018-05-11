@@ -11,5 +11,9 @@
     <string name="hint_edit_name">请在此输入标题</string>
     <string name="hint_edit_content">请在此记录你的想法</string>
     <string name="msg_note_not_saved">笔记保存失败，请检查存储空间。</string>
+    <string name="saving_note">正在保存笔记</string>
+    <string name="notebook">笔记本</string>
+    <string name="all_notes">全部笔记</string>
+    <string name="new_notebook">新建笔记本</string>
 
 </resources>
