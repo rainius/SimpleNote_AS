@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,6 +24,8 @@ import com.jing.app.sn.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import okhttp3.internal.Util;
 
 public class NoteListActivity extends AppCompatActivity {
 
@@ -63,6 +66,14 @@ public class NoteListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        // 是否登录
+        if (TextUtils.isEmpty(Utils.getUserEmail(this))) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            return;
+        }
+
         // 执行异步加载数据任务
         LoadAllNotesTask task = new LoadAllNotesTask(notebookId);
         task.execute();
@@ -123,6 +134,10 @@ public class NoteListActivity extends AppCompatActivity {
             case R.id.menu_item_notebook:
                 Intent intent = new Intent(this, NotebooksActivity.class);
                 startActivityForResult(intent, 1);
+                return true;
+            case R.id.menu_item_user:
+                intent = new Intent(this, UserInfoActivity.class);
+                startActivity(intent);
                 return true;
         }
         return super.onOptionsItemSelected(item);

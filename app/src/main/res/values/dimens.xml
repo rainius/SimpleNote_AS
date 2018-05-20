@@ -9,4 +9,7 @@
     <dimen name="read_padding_horizontal">16dp</dimen>
     <dimen name="read_padding_vertical">8dp</dimen>
     <dimen name="read_title_font_size">22sp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 </resources>
